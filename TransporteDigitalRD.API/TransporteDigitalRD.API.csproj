@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Swagger para documentación de API -->
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+
+		<!-- (Opcional) System.Linq para compatibilidad explícita -->
+		<PackageReference Include="System.Linq" Version="4.3.0" />
+
+		<!-- Autenticación con JWT (versión compatible con .NET 8) -->
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Referencias a proyectos locales de la solución -->
+		<ProjectReference Include="..\TransporteDigitalRD.Application\TransporteDigitalRD.Application.csproj" />
+		<ProjectReference Include="..\TransporteDigitalRD.Data\TransporteDigitalRD.Data.csproj" />
+		<ProjectReference Include="..\TransporteDigitalRD.Infraestructure\TransporteDigitalRD.Infraestructure.csproj" />
+	</ItemGroup>
+
+</Project>
