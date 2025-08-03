@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TransporteDigitalRD.Application.DTOs;
-using TransporteDigitalRD.Application.Interfaces;
+using TransporteDigitalRD.Infraestructure.Interfaces;
 using TransporteDigitalRD.Data;
 using TransporteDigitalRD.Data.Entities;
 

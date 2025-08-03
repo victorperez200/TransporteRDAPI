@@ -7,11 +7,11 @@ namespace TransporteDigitalRD.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class Postulaciones : ControllerBase
+  public class PostulacionesController : ControllerBase
   {
     // Una postulacion es un boleto basicamente
     private readonly PostulacionesService postulacionesService;
-    public Postulaciones(PostulacionesService service)
+    public PostulacionesController(PostulacionesService service)
     {
       postulacionesService = service;
     }

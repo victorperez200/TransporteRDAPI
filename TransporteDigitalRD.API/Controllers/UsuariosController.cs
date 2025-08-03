@@ -12,9 +12,9 @@ namespace TransporteDigitalRD.API.Controllers
   public class UsuariosController : ControllerBase
   {
     private readonly UsuariosService _usuariosService;
-    public UsuariosController(UsuariosService _usariosService)
+    public UsuariosController(UsuariosService usariosService)
     {
-      this._usuariosService = _usuariosService;
+      _usuariosService = usariosService;
     }
 
     [HttpGet] // TODO: maybe añadir un parametro {token} y ver si es admin, pero por ahora no tiene verificaciones

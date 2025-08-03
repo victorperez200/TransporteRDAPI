@@ -1,8 +1,8 @@
-﻿using TransporteDigitalRD.Application.Interfaces;
+﻿using TransporteDigitalRD.Infraestructure.Interfaces;
 //using TransporteDigitalRD.Data.Conexion;
 using TransporteDigitalRD.Data.Entities;
 
-namespace TransporteDigitalRD.Infrastructure.Repositories
+namespace TransporteDigitalRD.Infraestructure.Repositories
 {
     public class UserRepository : IUserRepository
     {

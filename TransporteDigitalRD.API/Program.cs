@@ -3,8 +3,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using TransporteDigitalRD.Application.UseCases;
-using TransporteDigitalRD.Application.Interfaces;
-using TransporteDigitalRD.Infrastructure.Repositories;
+using TransporteDigitalRD.Infraestructure.Interfaces;
+using TransporteDigitalRD.Infraestructure.Repositories;
 using TransporteDigitalRD.Infrastructure.Services;
 using TransporteDigitalRD.Data;
 
@@ -24,6 +24,9 @@ namespace TransporteDigitalRD.API
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
             builder.Services.AddScoped<AuthService>();
+            builder.Services.AddScoped<UsuariosService>();
+            builder.Services.AddScoped<ViajesService>();
+            builder.Services.AddScoped<TipoTransporteService>();
             builder.Services.AddAntiforgery(); // Opcional en APIs
             builder.Services.AddTransient<TransRDDataContext>(_ => new TransRDDataContext(connString));
 

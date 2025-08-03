@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using TransporteDigitalRD.Application.DTOs;
-using TransporteDigitalRD.Application.Interfaces;
+using TransporteDigitalRD.Infraestructure.Interfaces;
 using TransporteDigitalRD.Data;
 using TransporteDigitalRD.Data.Entities;
 
@@ -27,14 +27,30 @@ namespace TransporteDigitalRD.Application.UseCases
       _db = db;
     }
 
-    public async Task<UsuariosResponse> GetUsuarios()
+    public async Task<List<UsuariosResponse>> GetUsuarios()
     {
-      var usuarios = _db.Usuarios.ToList();
-      return new UsuariosResponse
-      {
-        usuarios = usuarios,
-      };
-    }
+            var usuarios = _db.Usuarios.ToList();
+            var usuariosResponse = new List<UsuariosResponse>();
+
+            foreach (var usu in usuarios)
+            {
+                
+                var response = new UsuariosResponse
+                {
+                    Nombre = usu.nombre,
+                    Email = usu.email,
+                    Telefono = usu.telefono,
+                    FechaRegistro = usu.fecha_registro,
+                    Estado = usu.estado,
+                    Foto = usu.foto,
+                    Roles = usu.roles
+                };
+
+                usuariosResponse.Add(response);
+            }
+
+            return usuariosResponse;
+        }
 
     public async Task<FotoResponse> PostFoto(FotoRequest request)
     {

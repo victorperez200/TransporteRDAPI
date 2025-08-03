@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TransporteDigitalRD.Data;
 using TransporteDigitalRD.Data.Entities;
 
-namespace TransporteDigitalRD.Application.Interfaces
+namespace TransporteDigitalRD.Infraestructure.Interfaces
 {
     public interface ITokenGenerator
     {

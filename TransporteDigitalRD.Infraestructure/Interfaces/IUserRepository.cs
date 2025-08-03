@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TransporteDigitalRD.Data.Entities;
 
-namespace TransporteDigitalRD.Application.Interfaces
+namespace TransporteDigitalRD.Infraestructure.Interfaces
 {
     public interface IUserRepository
     {
