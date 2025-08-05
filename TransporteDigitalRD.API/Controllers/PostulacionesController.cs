@@ -19,6 +19,7 @@ namespace TransporteDigitalRD.API.Controllers
     public async Task<IActionResult> PostPostulacion([FromBody] PostulacionRequest request)
     {
       var response = await postulacionesService.PostPostulacion(request);
+      if (response == null) return BadRequest("Invalid UserToke or TravelID (Token de sesion de usuario o id de viaje invalido)"); 
       return Ok(response);
     }
     [HttpGet("{token}")]
