@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TransporteDigitalRD.Application.UseCases;
 
@@ -6,6 +7,8 @@ namespace TransporteDigitalRD.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+    //[Authorize]
     public class TipoTransporteController : ControllerBase
     {
         private readonly TipoTransporteService _transporteService;
