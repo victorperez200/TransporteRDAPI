@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Text;
@@ -9,6 +10,8 @@ namespace TransporteDigitalRD.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
+
+  //[Authorize]
 
   public class UsuariosController : ControllerBase
   {

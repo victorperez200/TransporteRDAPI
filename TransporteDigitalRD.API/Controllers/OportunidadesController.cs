@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Linq.SqlClient;
 using TransporteDigitalRD.Application.DTOs;
@@ -8,6 +9,8 @@ namespace TransporteDigitalRD.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
+
+  //[Authorize]
   public class OportunidadesController : ControllerBase
   {
     OportunidadesService oportunidadesService;

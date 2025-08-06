@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="TransRD" Class="TransRDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TransRD" Class="TransRDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.Boleto" Member="Boletos">
     <Type Name="Boleto">
       <Column Name="boleto_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -80,6 +79,7 @@
       <Column Name="tarifa_base" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
       <Association Name="TipoTransporte_Viaje" Member="Viajes" ThisKey="tipo_id" OtherKey="tipo_id" Type="Viaje" />
       <Association Name="TipoTransporte_ConfiguracionTarifa" Member="ConfiguracionTarifas" ThisKey="tipo_id" OtherKey="tipo_id" Type="ConfiguracionTarifa" />
+      <Association Name="TipoTransporte_ReportarProblema" Member="ReportarProblema" ThisKey="tipo_id" OtherKey="TipoTransporteId" Type="ReportarProblema" />
     </Type>
   </Table>
   <Table Name="dbo.Usuario" Member="Usuarios">
@@ -96,6 +96,25 @@
       <Association Name="Usuario_Boleto" Member="Boletos" ThisKey="usuario_id" OtherKey="usuario_id" Type="Boleto" />
       <Association Name="Usuario_Viaje" Member="Viajes" ThisKey="usuario_id" OtherKey="usuario_id" Type="Viaje" />
       <Association Name="Usuario_CuentaSaldo" Member="CuentaSaldos" ThisKey="usuario_id" OtherKey="usuario_id" Type="CuentaSaldo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoProblema" Member="TipoProblema">
+    <Type Name="TipoProblema">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="TipoProblema_ReportarProblema" Member="ReportarProblema" ThisKey="Id" OtherKey="TipoProblemaId" Type="ReportarProblema" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReportarProblema" Member="ReportarProblema">
+    <Type Name="ReportarProblema">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TipoProblemaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipoTransporteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Origen_Lat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Origen_Lng" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Desc_Problema" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Association Name="TipoProblema_ReportarProblema" Member="TipoProblema" ThisKey="TipoProblemaId" OtherKey="Id" Type="TipoProblema" IsForeignKey="true" />
+      <Association Name="TipoTransporte_ReportarProblema" Member="TipoTransporte" ThisKey="TipoTransporteId" OtherKey="tipo_id" Type="TipoTransporte" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

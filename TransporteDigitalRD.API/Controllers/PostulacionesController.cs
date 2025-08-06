@@ -9,7 +9,7 @@ namespace TransporteDigitalRD.API.Controllers
   [Route("api/[controller]")]
   [ApiController]
 
-    [Authorize]
+  //[Authorize]
   public class PostulacionesController : ControllerBase
   {
     // Una postulacion es un boleto basicamente
