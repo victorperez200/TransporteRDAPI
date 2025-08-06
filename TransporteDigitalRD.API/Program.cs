@@ -15,9 +15,10 @@ namespace TransporteDigitalRD.API
         public static void Main(string[] args)
         {
             var connString = "Server=gfedo.database.windows.net;" +
-        "Database=TransRD;" +
-        "User Id=gfedo;" +
-        "Password=2210Gabi#;";
+                             "Database=TransRD;" +
+                             "User Id=gfedo;" +
+                             "Password=2210Gabi#;";
+
             var builder = WebApplication.CreateBuilder(args);
 
             // 🧩 Inyección de dependencias
@@ -27,8 +28,19 @@ namespace TransporteDigitalRD.API
             builder.Services.AddScoped<UsuariosService>();
             builder.Services.AddScoped<ViajesService>();
             builder.Services.AddScoped<TipoTransporteService>();
-            builder.Services.AddAntiforgery(); // Opcional en APIs
+            builder.Services.AddAntiforgery();
             builder.Services.AddTransient<TransRDDataContext>(_ => new TransRDDataContext(connString));
+
+            // ✅ Configurar CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
 
             // 🔐 Configurar autenticación con JWT
             var jwtKey = builder.Configuration["Jwt:Key"];
@@ -56,7 +68,7 @@ namespace TransporteDigitalRD.API
                 };
             });
 
-            // ✅ Swagger con soporte para JWT
+            // 📘 Swagger con soporte para JWT
             builder.Services.AddSwaggerGen(options =>
             {
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -90,7 +102,7 @@ namespace TransporteDigitalRD.API
 
             var app = builder.Build();
 
-            // 🌐 Middleware pipeline
+            // 🔧 Pipeline middleware
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -99,7 +111,9 @@ namespace TransporteDigitalRD.API
 
             app.UseHttpsRedirection();
 
-            app.UseAuthentication(); // debe ir antes de UseAuthorization
+            app.UseCors("AllowAll"); // 👈 Importante para acceso desde app MAUI
+
+            app.UseAuthentication(); // 👈 Siempre antes de UseAuthorization
             app.UseAuthorization();
 
             app.MapControllers();

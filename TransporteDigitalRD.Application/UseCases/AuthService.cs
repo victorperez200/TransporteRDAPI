@@ -27,9 +27,9 @@ namespace TransporteDigitalRD.Application.UseCases
 
             public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
             {
-               /* var existing = await _userRepository.GetByEmailAsync(request.Email);
-                if (existing != null)
-                    throw new Exception("User already exists");*/
+                /*var existing = await _userRepository.GetByEmailAsync(request.Email);
+            if (existing != null)
+                return null;*/
 
                 var user = new Usuario
                 {

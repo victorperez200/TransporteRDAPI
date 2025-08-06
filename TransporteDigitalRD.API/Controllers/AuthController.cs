@@ -20,6 +20,8 @@ namespace TransporteDigitalRD.API.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             var response = await _authService.RegisterAsync(request);
+            if (response == null)
+                return Conflict(new { message = "El correo ya está registrado" });
             return Ok(response);
         }
 
