@@ -28,6 +28,7 @@ namespace TransporteDigitalRD.API
             builder.Services.AddScoped<UsuariosService>();
             builder.Services.AddScoped<ViajesService>();
             builder.Services.AddScoped<TipoTransporteService>();
+            builder.Services.AddScoped<ReportarProblemaService>();
             builder.Services.AddAntiforgery();
             builder.Services.AddTransient<TransRDDataContext>(_ => new TransRDDataContext(connString));
 

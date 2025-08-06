@@ -24,7 +24,7 @@ namespace TransporteDigitalRD.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateViaje(CreateViajeDto dto)
+        public async Task<IActionResult> CreateViaje([FromBody] CreateViajeDto dto)
         {
             return Ok(_viajeService.CreateViaje(dto));
         }
