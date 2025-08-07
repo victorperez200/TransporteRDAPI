@@ -14,5 +14,6 @@ namespace TransporteDigitalRD.Application.DTOs
         public DateTime DateCreation { get; set; } = DateTime.UtcNow;
         public string Status { get; set; }
         public string Password { get; set; }
+        public string Rol { get; set; } = "Usuario";
     }
 }

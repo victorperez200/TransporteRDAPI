@@ -38,7 +38,9 @@ namespace TransporteDigitalRD.Application.UseCases
                     telefono = request.NumberPhone,
                     fecha_registro = DateTime.UtcNow,
                     estado = request.Status,
-                    contraseña = HashPassword(request.Password)
+                    contraseña = HashPassword(request.Password),
+                    roles= request.Rol
+                    
                 };
 
 
@@ -63,7 +65,8 @@ namespace TransporteDigitalRD.Application.UseCases
                 return new AuthResponse
                 {
                     Token = _tokenGenerator.GenerateToken(user),
-                    Username = user.nombre
+                    Username = user.nombre,
+                    Rol= user.roles
                 };
             }
 

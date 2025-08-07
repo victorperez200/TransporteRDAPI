@@ -1972,6 +1972,7 @@ namespace TransporteDigitalRD.Data
 			this._Boletos = new EntitySet<Boleto>(new Action<Boleto>(this.attach_Boletos), new Action<Boleto>(this.detach_Boletos));
 			this._Viajes = new EntitySet<Viaje>(new Action<Viaje>(this.attach_Viajes), new Action<Viaje>(this.detach_Viajes));
 			this._CuentaSaldos = new EntitySet<CuentaSaldo>(new Action<CuentaSaldo>(this.attach_CuentaSaldos), new Action<CuentaSaldo>(this.detach_CuentaSaldos));
+			
 			OnCreated();
 		}
 		
