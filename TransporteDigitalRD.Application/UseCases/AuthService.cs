@@ -66,7 +66,8 @@ namespace TransporteDigitalRD.Application.UseCases
                 {
                     Token = _tokenGenerator.GenerateToken(user),
                     Username = user.nombre,
-                    Rol= user.roles
+                    Rol= user.roles,
+                    UserId = user.usuario_id.ToString()
                 };
             }
 
