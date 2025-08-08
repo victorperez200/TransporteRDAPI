@@ -11,7 +11,7 @@ namespace TransporteDigitalRD.API.Controllers
   [Route("api/[controller]")]
   [ApiController]
 
-  //[Authorize]
+  [Authorize]
 
   public class UsuariosController : ControllerBase
   {

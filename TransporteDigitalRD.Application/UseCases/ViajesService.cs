@@ -98,5 +98,63 @@ namespace TransporteDigitalRD.Application.UseCases
             }
 
         }
+
+        ////
+        // Agregar este método a tu ViajesService existente
+
+        public async Task<ViajeResponse> UpdateViaje(int id, UpdateViajeDto dto)
+        {
+            if (id <= 0 || dto == null)
+                throw new ArgumentException("ID inválido o DTO nulo");
+
+            // Buscar el viaje existente
+            var viajeExistente = _db.Viajes.FirstOrDefault(x => x.viaje_id == id);
+
+            if (viajeExistente == null)
+            {
+                throw new KeyNotFoundException($"No se encontró el viaje con ID: {id}");
+            }
+
+            // Actualizar las propiedades usando los nombres de columna correctos
+            viajeExistente.usuario_id = dto.UsuarioId;
+            viajeExistente.tipo_id = dto.TipoId;
+            viajeExistente.origen_lat = dto.OrigenLat;
+            viajeExistente.origen_lng = dto.OrigenLong;
+            viajeExistente.destino_lat = dto.DestLat;
+            viajeExistente.destino_lng = dto.DestLong;
+            viajeExistente.fecha_inicio = dto.FechaInicio;
+            viajeExistente.fecha_fin = dto.FechaFin;
+            viajeExistente.costo = dto.Costo;
+            viajeExistente.Ubicacion_actual = dto.UbicActual;
+            viajeExistente.Destino = dto.Destino;
+
+            try
+            {
+                _db.SubmitChanges(); // Guardar cambios en la base de datos
+
+                // Retornar el viaje actualizado como ViajeResponse
+                return new ViajeResponse
+                {
+                    ViajeId = viajeExistente.viaje_id,
+                    UsuarioId = viajeExistente.usuario_id,
+                    TipoId = viajeExistente.tipo_id,
+                    OrigenLat = viajeExistente.origen_lat,
+                    OrigenLong = viajeExistente.origen_lng,
+                    DestLat = viajeExistente.destino_lat,
+                    DestLong = viajeExistente.destino_lng,
+                    FechaInicio = viajeExistente.fecha_inicio,
+                    FechaFin = viajeExistente.fecha_fin,
+                    Costo = viajeExistente.costo,
+                    UbicActual = viajeExistente.Ubicacion_actual,
+                    Destino = viajeExistente.Destino
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al actualizar el viaje: {ex.Message}");
+            }
+        }
+
+
     }
 }

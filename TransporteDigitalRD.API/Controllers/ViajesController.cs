@@ -8,8 +8,7 @@ namespace TransporteDigitalRD.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    //[Authorize]
+    [Authorize]
     public class ViajesController : ControllerBase
     {
         private readonly ViajesService _viajeService;
@@ -30,6 +29,13 @@ namespace TransporteDigitalRD.API.Controllers
         public async Task<IActionResult> CreateViaje([FromBody] CreateViajeDto dto)
         {
             return Ok(_viajeService.CreateViaje(dto));
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateViaje(int id, [FromBody] UpdateViajeDto dto)
+        {
+            var updatedViaje = _viajeService.UpdateViaje(id, dto);
+            return Ok(updatedViaje);
         }
 
         [HttpDelete("{id:int}")]
