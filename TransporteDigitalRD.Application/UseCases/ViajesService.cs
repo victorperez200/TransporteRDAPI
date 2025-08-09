@@ -46,7 +46,27 @@ namespace TransporteDigitalRD.Application.UseCases
             return viajeResponse;
         }
 
+        public void UpdateViaje(int id, UpdateViajeDto dto)
+        {
+            var viaje = _db.Viajes.FirstOrDefault(v => v.viaje_id == id);
+            if (viaje == null)
+                throw new Exception($"No se encontró el viaje con id {id}");
 
+            
+            
+            viaje.tipo_id = dto.TipoId;
+            viaje.origen_lat = dto.OrigenLat;
+            viaje.origen_lng = dto.OrigenLong;
+            viaje.destino_lat = dto.DestLat;
+            viaje.destino_lng = dto.DestLong;
+            viaje.fecha_inicio = dto.FechaInicio;
+            viaje.fecha_fin = dto.FechaFin;
+            viaje.costo = dto.Costo;
+            viaje.Ubicacion_actual = dto.UbicActual;
+            viaje.Destino = dto.Destino;
+
+            _db.SubmitChanges();
+        }
         public async Task<bool> CreateViaje(CreateViajeDto dto)
         {
             if (dto == null) return false;

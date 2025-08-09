@@ -32,6 +32,21 @@ namespace TransporteDigitalRD.API.Controllers
             return Ok(_viajeService.CreateViaje(dto));
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateViaje(int id, [FromBody] UpdateViajeDto dto)
+        {
+            try
+            {
+                _viajeService.UpdateViaje(id, dto);
+                return NoContent(); // 204: actualizado sin contenido
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+        }
+
+
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteViaje(int id)
         {
