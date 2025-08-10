@@ -9,7 +9,7 @@ namespace TransporteDigitalRD.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    //[Authorize]
+    [Authorize]
     public class ViajesController : ControllerBase
     {
         private readonly ViajesService _viajeService;

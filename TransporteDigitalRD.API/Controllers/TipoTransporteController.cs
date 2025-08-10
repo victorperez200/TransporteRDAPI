@@ -8,7 +8,7 @@ namespace TransporteDigitalRD.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    //[Authorize]
+    [Authorize]
     public class TipoTransporteController : ControllerBase
     {
         private readonly TipoTransporteService _transporteService;
