@@ -10,6 +10,6 @@ namespace TransporteDigitalRD.Application.DTOs
   public class PutMeRequest
   {
     public string Token { get; set; }
-    public Usuario usuario { get; set; }
+    public UsuariosResponse usuario { get; set; }
   }
 }

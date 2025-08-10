@@ -35,7 +35,7 @@ namespace TransporteDigitalRD.API.Controllers
         [HttpGet("me/{token}")]
         public async Task<IActionResult> GetMeAsync(string token)
         {
-          var response = _authService.GetMe(new MeRequest{ Token = token});
+          var response = await _authService.GetMe(new MeRequest{ Token = token});
           return Ok(response);
         }
 

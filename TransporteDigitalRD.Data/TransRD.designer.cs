@@ -393,12 +393,12 @@ namespace TransporteDigitalRD.Data
 					if ((previousValue != null))
 					{
 						this._Usuario.Entity = null;
-						previousValue.Boletos.Remove(this);
+						//previousValue.Boletos.Remove(this);
 					}
 					this._Usuario.Entity = value;
 					if ((value != null))
 					{
-						value.Boletos.Add(this);
+						//value.Boletos.Add(this);
 						this._usuario_id = value.usuario_id;
 					}
 					else
@@ -2156,7 +2156,7 @@ namespace TransporteDigitalRD.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Boleto", Storage="_Boletos", ThisKey="usuario_id", OtherKey="usuario_id")]
+		/*[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Boleto", Storage="_Boletos", ThisKey="usuario_id", OtherKey="usuario_id")]
 		public EntitySet<Boleto> Boletos
 		{
 			get
@@ -2167,7 +2167,7 @@ namespace TransporteDigitalRD.Data
 			{
 				this._Boletos.Assign(value);
 			}
-		}
+		}*/
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Viaje", Storage="_Viajes", ThisKey="usuario_id", OtherKey="usuario_id")]
 		public EntitySet<Viaje> Viajes
