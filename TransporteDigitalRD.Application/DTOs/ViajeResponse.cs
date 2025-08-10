@@ -20,5 +20,7 @@ namespace TransporteDigitalRD.Application.DTOs
         public decimal? Costo { get; set; }
         public string UbicActual { get; set; }
         public string Destino { get; set; }
+
+        public string Estado { get; set; }  // Puede ser "Disponible", "En curso", "Terminado", "Cancelado"
     }
 }

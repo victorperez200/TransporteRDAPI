@@ -46,6 +46,42 @@ namespace TransporteDigitalRD.Application.UseCases
             return viajeResponse;
         }
 
+        public async Task<List<ViajeResponse>> GetHistorialViajesPorUsuario(int usuarioId)
+        {
+            // Filtrar los viajes por usuario y por los estados 'Terminado' o 'Cancelado'
+            var viajeList = _db.Viajes
+                .Where(v => v.usuario_id == usuarioId && (v.estado == "Terminado" || v.estado == "Cancelado"))
+                .ToList();  // Obtiene los viajes filtrados
+
+            var viajeResponse = new List<ViajeResponse>();
+
+            // Mapear los datos de la tabla 'Viajes' a 'ViajeResponse'
+            foreach (var item in viajeList)
+            {
+                var response = new ViajeResponse
+                {
+                    ViajeId = item.viaje_id,
+                    UsuarioId = item.usuario_id,
+                    TipoId = item.tipo_id,
+                    OrigenLat = item.origen_lat,
+                    OrigenLong = item.origen_lng,
+                    DestLat = item.origen_lat,
+                    DestLong = item.origen_lng,
+                    FechaInicio = item.fecha_inicio,
+                    FechaFin = item.fecha_fin,
+                    Costo = item.costo,
+                    UbicActual = item.Ubicacion_actual,
+                    Destino = item.Destino,
+                    Estado = item.estado  // Incluir el estado del viaje
+                };
+
+                viajeResponse.Add(response);
+            }
+
+            return viajeResponse;
+        }
+
+
 
         public async Task<bool> CreateViaje(CreateViajeDto dto)
         {

@@ -25,6 +25,32 @@ namespace TransporteDigitalRD.API.Controllers
             return Ok(viajeList);
         }
 
+        [HttpGet("{usuarioId}")]
+        [HttpGet("historial/{usuarioId}")]
+        public async Task<IActionResult> GetHistorialDeViajes(int usuarioId)
+        {
+            try
+            {
+                // Llamar al servicio para obtener los viajes terminados y cancelados
+                var viajesHistorial = await _viajeService.GetHistorialViajesPorUsuario(usuarioId);
+
+                // Si no se encuentran viajes, devolver un mensaje de no encontrado
+                if (viajesHistorial == null || !viajesHistorial.Any())
+                {
+                    return NotFound(new { Message = "No se encontraron viajes terminados o cancelados para el usuario." });
+                }
+
+                // Si se encontraron viajes, devolverlos en una respuesta OK
+                return Ok(viajesHistorial);
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores y devolver un mensaje de error
+                return StatusCode(500, new { Message = "Ocurrió un error al obtener el historial de viajes.", Error = ex.Message });
+            }
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> CreateViaje([FromBody] CreateViajeDto dto)
         {
