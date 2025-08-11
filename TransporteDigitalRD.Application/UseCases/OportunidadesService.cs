@@ -16,7 +16,7 @@ namespace TransporteDigitalRD.Application.UseCases
     }
     public async Task<OportunidadesResponse> GetOportunidades()
     {
-      var _viajes = _db.Viajes.ToList();
+      var _viajes = _db.Viaje.ToList();
       return new OportunidadesResponse
       {
         Viajes = _viajes
@@ -24,7 +24,7 @@ namespace TransporteDigitalRD.Application.UseCases
     }
     public async Task<OportunidadesSingleResponse> GetOportunidades(OportunidadesRequest request)
     {
-      var viaje = _db.Viajes.SingleOrDefault(v => v.viaje_id.ToString() == request.id);
+      var viaje = _db.Viaje.SingleOrDefault(v => v.viaje_id.ToString() == request.id);
       return new OportunidadesSingleResponse
       {
         viaje = viaje

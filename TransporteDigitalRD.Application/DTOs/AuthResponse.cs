@@ -9,9 +9,10 @@ namespace TransporteDigitalRD.Application.DTOs
 
     public class AuthResponse
     {
+        public string Rol { get; set; }
         public string Token { get; set; }
         public string Username { get; set; }
-
-        public string Rol { get; set; } 
+        public string UserId { get; set; }
+        
     }
 }

@@ -9,6 +9,6 @@ namespace TransporteDigitalRD.Application.DTOs
 {
   public class PostulacionResponse
   {
-    public Boleto boleto { get; set; }
+   // public Boleto boleto { get; set; }
   }
 }

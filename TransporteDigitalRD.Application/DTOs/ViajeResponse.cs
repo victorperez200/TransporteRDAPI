@@ -8,8 +8,8 @@ namespace TransporteDigitalRD.Application.DTOs
 {
     public class ViajeResponse
     {
+        public string nombre_ruta { get; set; }
         public int ViajeId { get; set; }
-        public int UsuarioId { get; set; }
         public int TipoId { get; set; }
         public double? OrigenLat {  get; set; }
         public double? OrigenLong {  get; set; }
@@ -20,5 +20,7 @@ namespace TransporteDigitalRD.Application.DTOs
         public decimal? Costo { get; set; }
         public string UbicActual { get; set; }
         public string Destino { get; set; }
+        public string Origen { get; set; }
+        public string Estado { get; set; }  // Puede ser "Disponible", "En curso", "Terminado", "Cancelado"
     }
 }

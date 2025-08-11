@@ -30,12 +30,6 @@ namespace TransporteDigitalRD.Data
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertBoleto(Boleto instance);
-    partial void UpdateBoleto(Boleto instance);
-    partial void DeleteBoleto(Boleto instance);
-    partial void InsertViaje(Viaje instance);
-    partial void UpdateViaje(Viaje instance);
-    partial void DeleteViaje(Viaje instance);
     partial void InsertCodigoQR(CodigoQR instance);
     partial void UpdateCodigoQR(CodigoQR instance);
     partial void DeleteCodigoQR(CodigoQR instance);
@@ -60,6 +54,12 @@ namespace TransporteDigitalRD.Data
     partial void InsertReportarProblema(ReportarProblema instance);
     partial void UpdateReportarProblema(ReportarProblema instance);
     partial void DeleteReportarProblema(ReportarProblema instance);
+    partial void InsertViaje(Viaje instance);
+    partial void UpdateViaje(Viaje instance);
+    partial void DeleteViaje(Viaje instance);
+    partial void InsertViaje_Usuario(Viaje_Usuario instance);
+    partial void UpdateViaje_Usuario(Viaje_Usuario instance);
+    partial void DeleteViaje_Usuario(Viaje_Usuario instance);
     #endregion
 		
 		public TransRDDataContext(string connection) : 
@@ -84,22 +84,6 @@ namespace TransporteDigitalRD.Data
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Boleto> Boletos
-		{
-			get
-			{
-				return this.GetTable<Boleto>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Viaje> Viajes
-		{
-			get
-			{
-				return this.GetTable<Viaje>();
-			}
 		}
 		
 		public System.Data.Linq.Table<CodigoQR> CodigoQRs
@@ -165,705 +149,21 @@ namespace TransporteDigitalRD.Data
 				return this.GetTable<ReportarProblema>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Boleto")]
-	public partial class Boleto : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _boleto_id;
-		
-		private int _usuario_id;
-		
-		private int _viaje_id;
-		
-		private System.Nullable<System.DateTime> _fecha_compra;
-		
-		private decimal _monto;
-		
-		private string _estado;
-		
-		private EntityRef<Viaje> _Viaje;
-		
-		private EntityRef<Usuario> _Usuario;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onboleto_idChanging(int value);
-    partial void Onboleto_idChanged();
-    partial void Onusuario_idChanging(int value);
-    partial void Onusuario_idChanged();
-    partial void Onviaje_idChanging(int value);
-    partial void Onviaje_idChanged();
-    partial void Onfecha_compraChanging(System.Nullable<System.DateTime> value);
-    partial void Onfecha_compraChanged();
-    partial void OnmontoChanging(decimal value);
-    partial void OnmontoChanged();
-    partial void OnestadoChanging(string value);
-    partial void OnestadoChanged();
-    #endregion
-		
-		public Boleto()
-		{
-			this._Viaje = default(EntityRef<Viaje>);
-			this._Usuario = default(EntityRef<Usuario>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_boleto_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int boleto_id
+		public System.Data.Linq.Table<Viaje> Viaje
 		{
 			get
 			{
-				return this._boleto_id;
-			}
-			set
-			{
-				if ((this._boleto_id != value))
-				{
-					this.Onboleto_idChanging(value);
-					this.SendPropertyChanging();
-					this._boleto_id = value;
-					this.SendPropertyChanged("boleto_id");
-					this.Onboleto_idChanged();
-				}
+				return this.GetTable<Viaje>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_usuario_id", DbType="Int NOT NULL")]
-		public int usuario_id
+		public System.Data.Linq.Table<Viaje_Usuario> Viaje_Usuario
 		{
 			get
 			{
-				return this._usuario_id;
+				return this.GetTable<Viaje_Usuario>();
 			}
-			set
-			{
-				if ((this._usuario_id != value))
-				{
-					if (this._Usuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onusuario_idChanging(value);
-					this.SendPropertyChanging();
-					this._usuario_id = value;
-					this.SendPropertyChanged("usuario_id");
-					this.Onusuario_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_viaje_id", DbType="Int NOT NULL")]
-		public int viaje_id
-		{
-			get
-			{
-				return this._viaje_id;
-			}
-			set
-			{
-				if ((this._viaje_id != value))
-				{
-					if (this._Viaje.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onviaje_idChanging(value);
-					this.SendPropertyChanging();
-					this._viaje_id = value;
-					this.SendPropertyChanged("viaje_id");
-					this.Onviaje_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_compra", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fecha_compra
-		{
-			get
-			{
-				return this._fecha_compra;
-			}
-			set
-			{
-				if ((this._fecha_compra != value))
-				{
-					this.Onfecha_compraChanging(value);
-					this.SendPropertyChanging();
-					this._fecha_compra = value;
-					this.SendPropertyChanged("fecha_compra");
-					this.Onfecha_compraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_monto", DbType="Decimal(10,2) NOT NULL")]
-		public decimal monto
-		{
-			get
-			{
-				return this._monto;
-			}
-			set
-			{
-				if ((this._monto != value))
-				{
-					this.OnmontoChanging(value);
-					this.SendPropertyChanging();
-					this._monto = value;
-					this.SendPropertyChanged("monto");
-					this.OnmontoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="NVarChar(50)")]
-		public string estado
-		{
-			get
-			{
-				return this._estado;
-			}
-			set
-			{
-				if ((this._estado != value))
-				{
-					this.OnestadoChanging(value);
-					this.SendPropertyChanging();
-					this._estado = value;
-					this.SendPropertyChanged("estado");
-					this.OnestadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Viaje_Boleto", Storage="_Viaje", ThisKey="viaje_id", OtherKey="viaje_id", IsForeignKey=true)]
-		public Viaje Viaje
-		{
-			get
-			{
-				return this._Viaje.Entity;
-			}
-			set
-			{
-				Viaje previousValue = this._Viaje.Entity;
-				if (((previousValue != value) 
-							|| (this._Viaje.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Viaje.Entity = null;
-						previousValue.Boletos.Remove(this);
-					}
-					this._Viaje.Entity = value;
-					if ((value != null))
-					{
-						value.Boletos.Add(this);
-						this._viaje_id = value.viaje_id;
-					}
-					else
-					{
-						this._viaje_id = default(int);
-					}
-					this.SendPropertyChanged("Viaje");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Boleto", Storage="_Usuario", ThisKey="usuario_id", OtherKey="usuario_id", IsForeignKey=true)]
-		public Usuario Usuario
-		{
-			get
-			{
-				return this._Usuario.Entity;
-			}
-			set
-			{
-				Usuario previousValue = this._Usuario.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuario.Entity = null;
-						//previousValue.Boletos.Remove(this);
-					}
-					this._Usuario.Entity = value;
-					if ((value != null))
-					{
-						//value.Boletos.Add(this);
-						this._usuario_id = value.usuario_id;
-					}
-					else
-					{
-						this._usuario_id = default(int);
-					}
-					this.SendPropertyChanged("Usuario");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Viaje")]
-	public partial class Viaje : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _viaje_id;
-		
-		private int _usuario_id;
-		
-		private int _tipo_id;
-		
-		private System.Nullable<double> _origen_lat;
-		
-		private System.Nullable<double> _origen_lng;
-		
-		private System.Nullable<double> _destino_lat;
-		
-		private System.Nullable<double> _destino_lng;
-		
-		private System.Nullable<System.DateTime> _fecha_inicio;
-		
-		private System.Nullable<System.DateTime> _fecha_fin;
-		
-		private System.Nullable<decimal> _costo;
-		
-		private string _Ubicacion_actual;
-		
-		private string _Destino;
-		
-		private EntitySet<Boleto> _Boletos;
-		
-		private EntityRef<TipoTransporte> _TipoTransporte;
-		
-		private EntityRef<Usuario> _Usuario;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onviaje_idChanging(int value);
-    partial void Onviaje_idChanged();
-    partial void Onusuario_idChanging(int value);
-    partial void Onusuario_idChanged();
-    partial void Ontipo_idChanging(int value);
-    partial void Ontipo_idChanged();
-    partial void Onorigen_latChanging(System.Nullable<double> value);
-    partial void Onorigen_latChanged();
-    partial void Onorigen_lngChanging(System.Nullable<double> value);
-    partial void Onorigen_lngChanged();
-    partial void Ondestino_latChanging(System.Nullable<double> value);
-    partial void Ondestino_latChanged();
-    partial void Ondestino_lngChanging(System.Nullable<double> value);
-    partial void Ondestino_lngChanged();
-    partial void Onfecha_inicioChanging(System.Nullable<System.DateTime> value);
-    partial void Onfecha_inicioChanged();
-    partial void Onfecha_finChanging(System.Nullable<System.DateTime> value);
-    partial void Onfecha_finChanged();
-    partial void OncostoChanging(System.Nullable<decimal> value);
-    partial void OncostoChanged();
-    partial void OnUbicacion_actualChanging(string value);
-    partial void OnUbicacion_actualChanged();
-    partial void OnDestinoChanging(string value);
-    partial void OnDestinoChanged();
-    #endregion
-		
-		public Viaje()
-		{
-			this._Boletos = new EntitySet<Boleto>(new Action<Boleto>(this.attach_Boletos), new Action<Boleto>(this.detach_Boletos));
-			this._TipoTransporte = default(EntityRef<TipoTransporte>);
-			this._Usuario = default(EntityRef<Usuario>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_viaje_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int viaje_id
-		{
-			get
-			{
-				return this._viaje_id;
-			}
-			set
-			{
-				if ((this._viaje_id != value))
-				{
-					this.Onviaje_idChanging(value);
-					this.SendPropertyChanging();
-					this._viaje_id = value;
-					this.SendPropertyChanged("viaje_id");
-					this.Onviaje_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_usuario_id", DbType="Int NOT NULL")]
-		public int usuario_id
-		{
-			get
-			{
-				return this._usuario_id;
-			}
-			set
-			{
-				if ((this._usuario_id != value))
-				{
-					if (this._Usuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onusuario_idChanging(value);
-					this.SendPropertyChanging();
-					this._usuario_id = value;
-					this.SendPropertyChanged("usuario_id");
-					this.Onusuario_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tipo_id", DbType="Int NOT NULL")]
-		public int tipo_id
-		{
-			get
-			{
-				return this._tipo_id;
-			}
-			set
-			{
-				if ((this._tipo_id != value))
-				{
-					if (this._TipoTransporte.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Ontipo_idChanging(value);
-					this.SendPropertyChanging();
-					this._tipo_id = value;
-					this.SendPropertyChanged("tipo_id");
-					this.Ontipo_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen_lat", DbType="Float")]
-		public System.Nullable<double> origen_lat
-		{
-			get
-			{
-				return this._origen_lat;
-			}
-			set
-			{
-				if ((this._origen_lat != value))
-				{
-					this.Onorigen_latChanging(value);
-					this.SendPropertyChanging();
-					this._origen_lat = value;
-					this.SendPropertyChanged("origen_lat");
-					this.Onorigen_latChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen_lng", DbType="Float")]
-		public System.Nullable<double> origen_lng
-		{
-			get
-			{
-				return this._origen_lng;
-			}
-			set
-			{
-				if ((this._origen_lng != value))
-				{
-					this.Onorigen_lngChanging(value);
-					this.SendPropertyChanging();
-					this._origen_lng = value;
-					this.SendPropertyChanged("origen_lng");
-					this.Onorigen_lngChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_destino_lat", DbType="Float")]
-		public System.Nullable<double> destino_lat
-		{
-			get
-			{
-				return this._destino_lat;
-			}
-			set
-			{
-				if ((this._destino_lat != value))
-				{
-					this.Ondestino_latChanging(value);
-					this.SendPropertyChanging();
-					this._destino_lat = value;
-					this.SendPropertyChanged("destino_lat");
-					this.Ondestino_latChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_destino_lng", DbType="Float")]
-		public System.Nullable<double> destino_lng
-		{
-			get
-			{
-				return this._destino_lng;
-			}
-			set
-			{
-				if ((this._destino_lng != value))
-				{
-					this.Ondestino_lngChanging(value);
-					this.SendPropertyChanging();
-					this._destino_lng = value;
-					this.SendPropertyChanged("destino_lng");
-					this.Ondestino_lngChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_inicio", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fecha_inicio
-		{
-			get
-			{
-				return this._fecha_inicio;
-			}
-			set
-			{
-				if ((this._fecha_inicio != value))
-				{
-					this.Onfecha_inicioChanging(value);
-					this.SendPropertyChanging();
-					this._fecha_inicio = value;
-					this.SendPropertyChanged("fecha_inicio");
-					this.Onfecha_inicioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_fin", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fecha_fin
-		{
-			get
-			{
-				return this._fecha_fin;
-			}
-			set
-			{
-				if ((this._fecha_fin != value))
-				{
-					this.Onfecha_finChanging(value);
-					this.SendPropertyChanging();
-					this._fecha_fin = value;
-					this.SendPropertyChanged("fecha_fin");
-					this.Onfecha_finChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_costo", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> costo
-		{
-			get
-			{
-				return this._costo;
-			}
-			set
-			{
-				if ((this._costo != value))
-				{
-					this.OncostoChanging(value);
-					this.SendPropertyChanging();
-					this._costo = value;
-					this.SendPropertyChanged("costo");
-					this.OncostoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ubicacion_actual", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
-		public string Ubicacion_actual
-		{
-			get
-			{
-				return this._Ubicacion_actual;
-			}
-			set
-			{
-				if ((this._Ubicacion_actual != value))
-				{
-					this.OnUbicacion_actualChanging(value);
-					this.SendPropertyChanging();
-					this._Ubicacion_actual = value;
-					this.SendPropertyChanged("Ubicacion_actual");
-					this.OnUbicacion_actualChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Destino", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
-		public string Destino
-		{
-			get
-			{
-				return this._Destino;
-			}
-			set
-			{
-				if ((this._Destino != value))
-				{
-					this.OnDestinoChanging(value);
-					this.SendPropertyChanging();
-					this._Destino = value;
-					this.SendPropertyChanged("Destino");
-					this.OnDestinoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Viaje_Boleto", Storage="_Boletos", ThisKey="viaje_id", OtherKey="viaje_id")]
-		public EntitySet<Boleto> Boletos
-		{
-			get
-			{
-				return this._Boletos;
-			}
-			set
-			{
-				this._Boletos.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipoTransporte_Viaje", Storage="_TipoTransporte", ThisKey="tipo_id", OtherKey="tipo_id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public TipoTransporte TipoTransporte
-		{
-			get
-			{
-				return this._TipoTransporte.Entity;
-			}
-			set
-			{
-				TipoTransporte previousValue = this._TipoTransporte.Entity;
-				if (((previousValue != value) 
-							|| (this._TipoTransporte.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TipoTransporte.Entity = null;
-						previousValue.Viajes.Remove(this);
-					}
-					this._TipoTransporte.Entity = value;
-					if ((value != null))
-					{
-						value.Viajes.Add(this);
-						this._tipo_id = value.tipo_id;
-					}
-					else
-					{
-						this._tipo_id = default(int);
-					}
-					this.SendPropertyChanged("TipoTransporte");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Viaje", Storage="_Usuario", ThisKey="usuario_id", OtherKey="usuario_id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Usuario Usuario
-		{
-			get
-			{
-				return this._Usuario.Entity;
-			}
-			set
-			{
-				Usuario previousValue = this._Usuario.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuario.Entity = null;
-						previousValue.Viajes.Remove(this);
-					}
-					this._Usuario.Entity = value;
-					if ((value != null))
-					{
-						value.Viajes.Add(this);
-						this._usuario_id = value.usuario_id;
-					}
-					else
-					{
-						this._usuario_id = default(int);
-					}
-					this.SendPropertyChanged("Usuario");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Boletos(Boleto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Viaje = this;
-		}
-		
-		private void detach_Boletos(Boleto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Viaje = null;
 		}
 	}
 	
@@ -1731,11 +1031,11 @@ namespace TransporteDigitalRD.Data
 		
 		private decimal _tarifa_base;
 		
-		private EntitySet<Viaje> _Viajes;
-		
 		private EntitySet<ConfiguracionTarifa> _ConfiguracionTarifas;
 		
 		private EntitySet<ReportarProblema> _ReportarProblema;
+		
+		private EntitySet<Viaje> _Viaje;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -1751,9 +1051,9 @@ namespace TransporteDigitalRD.Data
 		
 		public TipoTransporte()
 		{
-			this._Viajes = new EntitySet<Viaje>(new Action<Viaje>(this.attach_Viajes), new Action<Viaje>(this.detach_Viajes));
 			this._ConfiguracionTarifas = new EntitySet<ConfiguracionTarifa>(new Action<ConfiguracionTarifa>(this.attach_ConfiguracionTarifas), new Action<ConfiguracionTarifa>(this.detach_ConfiguracionTarifas));
 			this._ReportarProblema = new EntitySet<ReportarProblema>(new Action<ReportarProblema>(this.attach_ReportarProblema), new Action<ReportarProblema>(this.detach_ReportarProblema));
+			this._Viaje = new EntitySet<Viaje>(new Action<Viaje>(this.attach_Viaje), new Action<Viaje>(this.detach_Viaje));
 			OnCreated();
 		}
 		
@@ -1817,19 +1117,6 @@ namespace TransporteDigitalRD.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipoTransporte_Viaje", Storage="_Viajes", ThisKey="tipo_id", OtherKey="tipo_id")]
-		public EntitySet<Viaje> Viajes
-		{
-			get
-			{
-				return this._Viajes;
-			}
-			set
-			{
-				this._Viajes.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipoTransporte_ConfiguracionTarifa", Storage="_ConfiguracionTarifas", ThisKey="tipo_id", OtherKey="tipo_id")]
 		public EntitySet<ConfiguracionTarifa> ConfiguracionTarifas
 		{
@@ -1856,6 +1143,19 @@ namespace TransporteDigitalRD.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipoTransporte_Viaje", Storage="_Viaje", ThisKey="tipo_id", OtherKey="tipo_id")]
+		public EntitySet<Viaje> Viaje
+		{
+			get
+			{
+				return this._Viaje;
+			}
+			set
+			{
+				this._Viaje.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1874,18 +1174,6 @@ namespace TransporteDigitalRD.Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Viajes(Viaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.TipoTransporte = this;
-		}
-		
-		private void detach_Viajes(Viaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.TipoTransporte = null;
 		}
 		
 		private void attach_ConfiguracionTarifas(ConfiguracionTarifa entity)
@@ -1907,6 +1195,18 @@ namespace TransporteDigitalRD.Data
 		}
 		
 		private void detach_ReportarProblema(ReportarProblema entity)
+		{
+			this.SendPropertyChanging();
+			entity.TipoTransporte = null;
+		}
+		
+		private void attach_Viaje(Viaje entity)
+		{
+			this.SendPropertyChanging();
+			entity.TipoTransporte = this;
+		}
+		
+		private void detach_Viaje(Viaje entity)
 		{
 			this.SendPropertyChanging();
 			entity.TipoTransporte = null;
@@ -1937,10 +1237,6 @@ namespace TransporteDigitalRD.Data
 		
 		private string _roles;
 		
-		private EntitySet<Boleto> _Boletos;
-		
-		private EntitySet<Viaje> _Viajes;
-		
 		private EntitySet<CuentaSaldo> _CuentaSaldos;
 		
     #region Definiciones de métodos de extensibilidad
@@ -1969,10 +1265,7 @@ namespace TransporteDigitalRD.Data
 		
 		public Usuario()
 		{
-			this._Boletos = new EntitySet<Boleto>(new Action<Boleto>(this.attach_Boletos), new Action<Boleto>(this.detach_Boletos));
-			this._Viajes = new EntitySet<Viaje>(new Action<Viaje>(this.attach_Viajes), new Action<Viaje>(this.detach_Viajes));
 			this._CuentaSaldos = new EntitySet<CuentaSaldo>(new Action<CuentaSaldo>(this.attach_CuentaSaldos), new Action<CuentaSaldo>(this.detach_CuentaSaldos));
-			
 			OnCreated();
 		}
 		
@@ -2156,32 +1449,6 @@ namespace TransporteDigitalRD.Data
 			}
 		}
 		
-		/*[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Boleto", Storage="_Boletos", ThisKey="usuario_id", OtherKey="usuario_id")]
-		public EntitySet<Boleto> Boletos
-		{
-			get
-			{
-				return this._Boletos;
-			}
-			set
-			{
-				this._Boletos.Assign(value);
-			}
-		}*/
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Viaje", Storage="_Viajes", ThisKey="usuario_id", OtherKey="usuario_id")]
-		public EntitySet<Viaje> Viajes
-		{
-			get
-			{
-				return this._Viajes;
-			}
-			set
-			{
-				this._Viajes.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_CuentaSaldo", Storage="_CuentaSaldos", ThisKey="usuario_id", OtherKey="usuario_id")]
 		public EntitySet<CuentaSaldo> CuentaSaldos
 		{
@@ -2213,30 +1480,6 @@ namespace TransporteDigitalRD.Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Boletos(Boleto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = this;
-		}
-		
-		private void detach_Boletos(Boleto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = null;
-		}
-		
-		private void attach_Viajes(Viaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = this;
-		}
-		
-		private void detach_Viajes(Viaje entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = null;
 		}
 		
 		private void attach_CuentaSaldos(CuentaSaldo entity)
@@ -2605,6 +1848,843 @@ namespace TransporteDigitalRD.Data
 						this._TipoTransporteId = default(int);
 					}
 					this.SendPropertyChanged("TipoTransporte");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Viaje")]
+	public partial class Viaje : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _viaje_id;
+		
+		private int _tipo_id;
+		
+		private System.Nullable<double> _origen_lat;
+		
+		private System.Nullable<double> _origen_lng;
+		
+		private System.Nullable<double> _destino_lat;
+		
+		private System.Nullable<double> _destino_lng;
+		
+		private System.Nullable<System.DateTime> _fecha_inicio;
+		
+		private System.Nullable<System.DateTime> _fecha_fin;
+		
+		private System.Nullable<decimal> _costo;
+		
+		private string _Ubicacion_actual;
+		
+		private string _Destino;
+		
+		private string _estado;
+		
+		private string _origen;
+		
+		private string _nombre_ruta;
+		
+		private EntityRef<TipoTransporte> _TipoTransporte;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onviaje_idChanging(int value);
+    partial void Onviaje_idChanged();
+    partial void Ontipo_idChanging(int value);
+    partial void Ontipo_idChanged();
+    partial void Onorigen_latChanging(System.Nullable<double> value);
+    partial void Onorigen_latChanged();
+    partial void Onorigen_lngChanging(System.Nullable<double> value);
+    partial void Onorigen_lngChanged();
+    partial void Ondestino_latChanging(System.Nullable<double> value);
+    partial void Ondestino_latChanged();
+    partial void Ondestino_lngChanging(System.Nullable<double> value);
+    partial void Ondestino_lngChanged();
+    partial void Onfecha_inicioChanging(System.Nullable<System.DateTime> value);
+    partial void Onfecha_inicioChanged();
+    partial void Onfecha_finChanging(System.Nullable<System.DateTime> value);
+    partial void Onfecha_finChanged();
+    partial void OncostoChanging(System.Nullable<decimal> value);
+    partial void OncostoChanged();
+    partial void OnUbicacion_actualChanging(string value);
+    partial void OnUbicacion_actualChanged();
+    partial void OnDestinoChanging(string value);
+    partial void OnDestinoChanged();
+    partial void OnestadoChanging(string value);
+    partial void OnestadoChanged();
+    partial void OnorigenChanging(string value);
+    partial void OnorigenChanged();
+    partial void Onnombre_rutaChanging(string value);
+    partial void Onnombre_rutaChanged();
+    #endregion
+		
+		public Viaje()
+		{
+			this._TipoTransporte = default(EntityRef<TipoTransporte>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_viaje_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int viaje_id
+		{
+			get
+			{
+				return this._viaje_id;
+			}
+			set
+			{
+				if ((this._viaje_id != value))
+				{
+					this.Onviaje_idChanging(value);
+					this.SendPropertyChanging();
+					this._viaje_id = value;
+					this.SendPropertyChanged("viaje_id");
+					this.Onviaje_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tipo_id", DbType="Int NOT NULL")]
+		public int tipo_id
+		{
+			get
+			{
+				return this._tipo_id;
+			}
+			set
+			{
+				if ((this._tipo_id != value))
+				{
+					if (this._TipoTransporte.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Ontipo_idChanging(value);
+					this.SendPropertyChanging();
+					this._tipo_id = value;
+					this.SendPropertyChanged("tipo_id");
+					this.Ontipo_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen_lat", DbType="Float")]
+		public System.Nullable<double> origen_lat
+		{
+			get
+			{
+				return this._origen_lat;
+			}
+			set
+			{
+				if ((this._origen_lat != value))
+				{
+					this.Onorigen_latChanging(value);
+					this.SendPropertyChanging();
+					this._origen_lat = value;
+					this.SendPropertyChanged("origen_lat");
+					this.Onorigen_latChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen_lng", DbType="Float")]
+		public System.Nullable<double> origen_lng
+		{
+			get
+			{
+				return this._origen_lng;
+			}
+			set
+			{
+				if ((this._origen_lng != value))
+				{
+					this.Onorigen_lngChanging(value);
+					this.SendPropertyChanging();
+					this._origen_lng = value;
+					this.SendPropertyChanged("origen_lng");
+					this.Onorigen_lngChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_destino_lat", DbType="Float")]
+		public System.Nullable<double> destino_lat
+		{
+			get
+			{
+				return this._destino_lat;
+			}
+			set
+			{
+				if ((this._destino_lat != value))
+				{
+					this.Ondestino_latChanging(value);
+					this.SendPropertyChanging();
+					this._destino_lat = value;
+					this.SendPropertyChanged("destino_lat");
+					this.Ondestino_latChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_destino_lng", DbType="Float")]
+		public System.Nullable<double> destino_lng
+		{
+			get
+			{
+				return this._destino_lng;
+			}
+			set
+			{
+				if ((this._destino_lng != value))
+				{
+					this.Ondestino_lngChanging(value);
+					this.SendPropertyChanging();
+					this._destino_lng = value;
+					this.SendPropertyChanged("destino_lng");
+					this.Ondestino_lngChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_inicio", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fecha_inicio
+		{
+			get
+			{
+				return this._fecha_inicio;
+			}
+			set
+			{
+				if ((this._fecha_inicio != value))
+				{
+					this.Onfecha_inicioChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_inicio = value;
+					this.SendPropertyChanged("fecha_inicio");
+					this.Onfecha_inicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_fin", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fecha_fin
+		{
+			get
+			{
+				return this._fecha_fin;
+			}
+			set
+			{
+				if ((this._fecha_fin != value))
+				{
+					this.Onfecha_finChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_fin = value;
+					this.SendPropertyChanged("fecha_fin");
+					this.Onfecha_finChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_costo", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> costo
+		{
+			get
+			{
+				return this._costo;
+			}
+			set
+			{
+				if ((this._costo != value))
+				{
+					this.OncostoChanging(value);
+					this.SendPropertyChanging();
+					this._costo = value;
+					this.SendPropertyChanged("costo");
+					this.OncostoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ubicacion_actual", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Ubicacion_actual
+		{
+			get
+			{
+				return this._Ubicacion_actual;
+			}
+			set
+			{
+				if ((this._Ubicacion_actual != value))
+				{
+					this.OnUbicacion_actualChanging(value);
+					this.SendPropertyChanging();
+					this._Ubicacion_actual = value;
+					this.SendPropertyChanged("Ubicacion_actual");
+					this.OnUbicacion_actualChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Destino", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Destino
+		{
+			get
+			{
+				return this._Destino;
+			}
+			set
+			{
+				if ((this._Destino != value))
+				{
+					this.OnDestinoChanging(value);
+					this.SendPropertyChanging();
+					this._Destino = value;
+					this.SendPropertyChanged("Destino");
+					this.OnDestinoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string estado
+		{
+			get
+			{
+				return this._estado;
+			}
+			set
+			{
+				if ((this._estado != value))
+				{
+					this.OnestadoChanging(value);
+					this.SendPropertyChanging();
+					this._estado = value;
+					this.SendPropertyChanged("estado");
+					this.OnestadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen", DbType="NChar(150)")]
+		public string origen
+		{
+			get
+			{
+				return this._origen;
+			}
+			set
+			{
+				if ((this._origen != value))
+				{
+					this.OnorigenChanging(value);
+					this.SendPropertyChanging();
+					this._origen = value;
+					this.SendPropertyChanged("origen");
+					this.OnorigenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_ruta", DbType="NChar(150)")]
+		public string nombre_ruta
+		{
+			get
+			{
+				return this._nombre_ruta;
+			}
+			set
+			{
+				if ((this._nombre_ruta != value))
+				{
+					this.Onnombre_rutaChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_ruta = value;
+					this.SendPropertyChanged("nombre_ruta");
+					this.Onnombre_rutaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipoTransporte_Viaje", Storage="_TipoTransporte", ThisKey="tipo_id", OtherKey="tipo_id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public TipoTransporte TipoTransporte
+		{
+			get
+			{
+				return this._TipoTransporte.Entity;
+			}
+			set
+			{
+				TipoTransporte previousValue = this._TipoTransporte.Entity;
+				if (((previousValue != value) 
+							|| (this._TipoTransporte.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TipoTransporte.Entity = null;
+						previousValue.Viaje.Remove(this);
+					}
+					this._TipoTransporte.Entity = value;
+					if ((value != null))
+					{
+						value.Viaje.Add(this);
+						this._tipo_id = value.tipo_id;
+					}
+					else
+					{
+						this._tipo_id = default(int);
+					}
+					this.SendPropertyChanged("TipoTransporte");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Viaje_Usuario")]
+	public partial class Viaje_Usuario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _viaje_id;
+		
+		private int _UsuarioID;
+		
+		private int _tipo_id;
+		
+		private System.Nullable<double> _origen_lat;
+		
+		private System.Nullable<double> _origen_lng;
+		
+		private System.Nullable<double> _destino_lat;
+		
+		private System.Nullable<double> _destino_lng;
+		
+		private System.DateTime _fecha_inicio;
+		
+		private System.Nullable<System.DateTime> _fecha_fin;
+		
+		private System.Nullable<decimal> _costo;
+		
+		private string _Ubicacion_actual;
+		
+		private string _Destino;
+		
+		private string _estado;
+		
+		private string _origen;
+		
+		private string _nombre_ruta;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void Onviaje_idChanging(int value);
+    partial void Onviaje_idChanged();
+    partial void OnUsuarioIDChanging(int value);
+    partial void OnUsuarioIDChanged();
+    partial void Ontipo_idChanging(int value);
+    partial void Ontipo_idChanged();
+    partial void Onorigen_latChanging(System.Nullable<double> value);
+    partial void Onorigen_latChanged();
+    partial void Onorigen_lngChanging(System.Nullable<double> value);
+    partial void Onorigen_lngChanged();
+    partial void Ondestino_latChanging(System.Nullable<double> value);
+    partial void Ondestino_latChanged();
+    partial void Ondestino_lngChanging(System.Nullable<double> value);
+    partial void Ondestino_lngChanged();
+    partial void Onfecha_inicioChanging(System.DateTime value);
+    partial void Onfecha_inicioChanged();
+    partial void Onfecha_finChanging(System.Nullable<System.DateTime> value);
+    partial void Onfecha_finChanged();
+    partial void OncostoChanging(System.Nullable<decimal> value);
+    partial void OncostoChanged();
+    partial void OnUbicacion_actualChanging(string value);
+    partial void OnUbicacion_actualChanged();
+    partial void OnDestinoChanging(string value);
+    partial void OnDestinoChanged();
+    partial void OnestadoChanging(string value);
+    partial void OnestadoChanged();
+    partial void OnorigenChanging(string value);
+    partial void OnorigenChanged();
+    partial void Onnombre_rutaChanging(string value);
+    partial void Onnombre_rutaChanged();
+    #endregion
+		
+		public Viaje_Usuario()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_viaje_id", DbType="Int NOT NULL")]
+		public int viaje_id
+		{
+			get
+			{
+				return this._viaje_id;
+			}
+			set
+			{
+				if ((this._viaje_id != value))
+				{
+					this.Onviaje_idChanging(value);
+					this.SendPropertyChanging();
+					this._viaje_id = value;
+					this.SendPropertyChanged("viaje_id");
+					this.Onviaje_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioID", DbType="Int NOT NULL")]
+		public int UsuarioID
+		{
+			get
+			{
+				return this._UsuarioID;
+			}
+			set
+			{
+				if ((this._UsuarioID != value))
+				{
+					this.OnUsuarioIDChanging(value);
+					this.SendPropertyChanging();
+					this._UsuarioID = value;
+					this.SendPropertyChanged("UsuarioID");
+					this.OnUsuarioIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tipo_id", DbType="Int NOT NULL")]
+		public int tipo_id
+		{
+			get
+			{
+				return this._tipo_id;
+			}
+			set
+			{
+				if ((this._tipo_id != value))
+				{
+					this.Ontipo_idChanging(value);
+					this.SendPropertyChanging();
+					this._tipo_id = value;
+					this.SendPropertyChanged("tipo_id");
+					this.Ontipo_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen_lat", DbType="Float")]
+		public System.Nullable<double> origen_lat
+		{
+			get
+			{
+				return this._origen_lat;
+			}
+			set
+			{
+				if ((this._origen_lat != value))
+				{
+					this.Onorigen_latChanging(value);
+					this.SendPropertyChanging();
+					this._origen_lat = value;
+					this.SendPropertyChanged("origen_lat");
+					this.Onorigen_latChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen_lng", DbType="Float")]
+		public System.Nullable<double> origen_lng
+		{
+			get
+			{
+				return this._origen_lng;
+			}
+			set
+			{
+				if ((this._origen_lng != value))
+				{
+					this.Onorigen_lngChanging(value);
+					this.SendPropertyChanging();
+					this._origen_lng = value;
+					this.SendPropertyChanged("origen_lng");
+					this.Onorigen_lngChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_destino_lat", DbType="Float")]
+		public System.Nullable<double> destino_lat
+		{
+			get
+			{
+				return this._destino_lat;
+			}
+			set
+			{
+				if ((this._destino_lat != value))
+				{
+					this.Ondestino_latChanging(value);
+					this.SendPropertyChanging();
+					this._destino_lat = value;
+					this.SendPropertyChanged("destino_lat");
+					this.Ondestino_latChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_destino_lng", DbType="Float")]
+		public System.Nullable<double> destino_lng
+		{
+			get
+			{
+				return this._destino_lng;
+			}
+			set
+			{
+				if ((this._destino_lng != value))
+				{
+					this.Ondestino_lngChanging(value);
+					this.SendPropertyChanging();
+					this._destino_lng = value;
+					this.SendPropertyChanged("destino_lng");
+					this.Ondestino_lngChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_inicio", DbType="DateTime2 NOT NULL")]
+		public System.DateTime fecha_inicio
+		{
+			get
+			{
+				return this._fecha_inicio;
+			}
+			set
+			{
+				if ((this._fecha_inicio != value))
+				{
+					this.Onfecha_inicioChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_inicio = value;
+					this.SendPropertyChanged("fecha_inicio");
+					this.Onfecha_inicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_fin", DbType="DateTime2")]
+		public System.Nullable<System.DateTime> fecha_fin
+		{
+			get
+			{
+				return this._fecha_fin;
+			}
+			set
+			{
+				if ((this._fecha_fin != value))
+				{
+					this.Onfecha_finChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_fin = value;
+					this.SendPropertyChanged("fecha_fin");
+					this.Onfecha_finChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_costo", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> costo
+		{
+			get
+			{
+				return this._costo;
+			}
+			set
+			{
+				if ((this._costo != value))
+				{
+					this.OncostoChanging(value);
+					this.SendPropertyChanging();
+					this._costo = value;
+					this.SendPropertyChanged("costo");
+					this.OncostoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ubicacion_actual", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Ubicacion_actual
+		{
+			get
+			{
+				return this._Ubicacion_actual;
+			}
+			set
+			{
+				if ((this._Ubicacion_actual != value))
+				{
+					this.OnUbicacion_actualChanging(value);
+					this.SendPropertyChanging();
+					this._Ubicacion_actual = value;
+					this.SendPropertyChanged("Ubicacion_actual");
+					this.OnUbicacion_actualChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Destino", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Destino
+		{
+			get
+			{
+				return this._Destino;
+			}
+			set
+			{
+				if ((this._Destino != value))
+				{
+					this.OnDestinoChanging(value);
+					this.SendPropertyChanging();
+					this._Destino = value;
+					this.SendPropertyChanged("Destino");
+					this.OnDestinoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string estado
+		{
+			get
+			{
+				return this._estado;
+			}
+			set
+			{
+				if ((this._estado != value))
+				{
+					this.OnestadoChanging(value);
+					this.SendPropertyChanging();
+					this._estado = value;
+					this.SendPropertyChanged("estado");
+					this.OnestadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origen", DbType="NVarChar(150)")]
+		public string origen
+		{
+			get
+			{
+				return this._origen;
+			}
+			set
+			{
+				if ((this._origen != value))
+				{
+					this.OnorigenChanging(value);
+					this.SendPropertyChanging();
+					this._origen = value;
+					this.SendPropertyChanged("origen");
+					this.OnorigenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_ruta", DbType="NVarChar(150)")]
+		public string nombre_ruta
+		{
+			get
+			{
+				return this._nombre_ruta;
+			}
+			set
+			{
+				if ((this._nombre_ruta != value))
+				{
+					this.Onnombre_rutaChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_ruta = value;
+					this.SendPropertyChanged("nombre_ruta");
+					this.Onnombre_rutaChanged();
 				}
 			}
 		}

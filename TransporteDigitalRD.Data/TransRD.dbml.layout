@@ -2,18 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.25, 16" name="TransRD">
   <DataContextMoniker Name="/TransRDDataContext" />
   <nestedChildShapes>
-    <classShape Id="0e258236-60e0-49cf-9381-957273b8afc9" absoluteBounds="3.5, 2.875, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/TransRDDataContext/Boleto" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8ec71284-9cfe-43b1-a81c-46d45eb41fe7" absoluteBounds="3.515, 3.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="b02bc72e-80bb-441f-b57f-5eded4d9590b" absoluteBounds="3.5, 9.375, 2, 3.1170068359375023">
-      <DataClassMoniker Name="/TransRDDataContext/Viaje" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b11353db-16ff-41e6-9087-36e9ea0cdccf" absoluteBounds="3.515, 9.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="eb5f77a3-9614-467c-b7f6-51b452540f61" absoluteBounds="6.25, 7.25, 2, 1.9631982421874996">
       <DataClassMoniker Name="/TransRDDataContext/CodigoQR" />
       <nestedChildShapes>
@@ -50,53 +38,25 @@
         <elementListCompartment Id="cf2fc88d-e0e9-4754-8836-f6a974b26892" absoluteBounds="0.765, 6.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.50153746153846 : 9.375); (3.125 : 8.99846253846154); (3.125 : 5.2131982421875); (3.5 : 4.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TransRDDataContext/Viaje/Viaje_Boleto" />
-      <nodes>
-        <classShapeMoniker Id="b02bc72e-80bb-441f-b57f-5eded4d9590b" />
-        <classShapeMoniker Id="0e258236-60e0-49cf-9381-957273b8afc9" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 7.47679768880208); (6.25 : 7.47679768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.5 : 7.70359537760417); (4.5 : 8.45839730989583); (6.25 : 8.45839730989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TransRDDataContext/CuentaSaldo/CuentaSaldo_CodigoQR" />
       <nodes>
         <classShapeMoniker Id="1fbf211b-5183-43e1-8650-2b2e839286c9" />
         <classShapeMoniker Id="eb5f77a3-9614-467c-b7f6-51b452540f61" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.125); (5.875 : 5.75); (5.875 : 6.77089680989583); (6.25 : 6.39589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 6.82294840494792); (7.25 : 6.82294840494792); (7.25 : 6.39589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TransRDDataContext/CuentaSaldo/CuentaSaldo_Recarga" />
       <nodes>
         <classShapeMoniker Id="1fbf211b-5183-43e1-8650-2b2e839286c9" />
         <classShapeMoniker Id="6f72f046-3037-454e-9e6d-a97b6e9b0e71" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 10.9431469726562); (3.5 : 10.9431469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TransRDDataContext/TipoTransporte/TipoTransporte_Viaje" />
-      <nodes>
-        <classShapeMoniker Id="684cb411-711f-4bc0-b93d-d377b0fabbed" />
-        <classShapeMoniker Id="b02bc72e-80bb-441f-b57f-5eded4d9590b" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 11.6362939453125); (1.75 : 14.8854484049479); (3.5 : 14.8854484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 11.6362939453125); (1.75 : 14.8854484049479); (3.5 : 14.8854484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TransRDDataContext/TipoTransporte/TipoTransporte_ConfiguracionTarifa" />
       <nodes>
         <classShapeMoniker Id="684cb411-711f-4bc0-b93d-d377b0fabbed" />
         <classShapeMoniker Id="d54e6a2b-3f70-42cf-a7f7-38e960671446" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 5.625); (1.75 : 3.82534662109375); (3.5 : 3.82534662109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TransRDDataContext/Usuario/Usuario_Boleto" />
-      <nodes>
-        <classShapeMoniker Id="0a7cb11a-ca20-4042-9294-6d6810d6f5ad" />
-        <classShapeMoniker Id="0e258236-60e0-49cf-9381-957273b8afc9" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.10356307752404); (3.06607443490112 : 8.41963751242516 : JumpStart); (3.18392556509888 : 8.53748864262292 : JumpEnd); (3.3125 : 8.66606307752404); (3.3125 : 10.1278214863281); (3.5 : 10.1278214863281)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TransRDDataContext/Usuario/Usuario_Viaje" />
-      <nodes>
-        <classShapeMoniker Id="0a7cb11a-ca20-4042-9294-6d6810d6f5ad" />
-        <classShapeMoniker Id="b02bc72e-80bb-441f-b57f-5eded4d9590b" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 6.91429768880208); (3.5 : 6.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -118,18 +78,37 @@
         <elementListCompartment Id="195938b7-24bd-4707-8125-a763bcea545e" absoluteBounds="7.39, 10.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10 : 10.3189925130208); (9.375 : 10.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(9.99999999999927 : 10.3189925130208); (9.375 : 10.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TransRDDataContext/TipoProblema/TipoProblema_ReportarProblema" />
       <nodes>
         <classShapeMoniker Id="ef4b4c50-2a90-47c1-a4ef-402d05b046ff" />
         <classShapeMoniker Id="1bbdc31e-c725-4404-a87c-5fc1510d802b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 10.9431469726562); (3.25 : 10.9431469726562); (3.25 : 12.7420068359375); (8.375 : 12.7420068359375); (8.375 : 12.3381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 10.9431469726562); (3.625 : 10.9431469726562); (3.625 : 13.0016097005208); (8.375 : 13.0016097005208); (8.375 : 12.3381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TransRDDataContext/TipoTransporte/TipoTransporte_ReportarProblema" />
       <nodes>
         <classShapeMoniker Id="684cb411-711f-4bc0-b93d-d377b0fabbed" />
         <classShapeMoniker Id="1bbdc31e-c725-4404-a87c-5fc1510d802b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="adae4052-16de-4bab-ba26-f50fa15c22de" absoluteBounds="3.875, 9.25, 2, 3.5016097005208309">
+      <DataClassMoniker Name="/TransRDDataContext/Viaje" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b02ed35-343f-4832-9eb0-8e9eb71f07ce" absoluteBounds="3.89, 9.71, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="515ee2cb-6ee6-4b3b-b731-adc29f767fea" absoluteBounds="0.75, 0.75, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/TransRDDataContext/Viaje_Usuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="11e9c0cb-be68-4ab7-ab40-928c380850f6" absoluteBounds="0.765, 1.21, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 10.5340734863281); (3.875 : 10.5340734863281)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TransRDDataContext/TipoTransporte/TipoTransporte_Viaje" />
+      <nodes>
+        <classShapeMoniker Id="684cb411-711f-4bc0-b93d-d377b0fabbed" />
+        <classShapeMoniker Id="adae4052-16de-4bab-ba26-f50fa15c22de" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

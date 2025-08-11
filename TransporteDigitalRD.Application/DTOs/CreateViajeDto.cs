@@ -8,7 +8,8 @@ namespace TransporteDigitalRD.Application.DTOs
 {
     public class CreateViajeDto
     {
-        public int UsuarioId { get; set; }
+        public string NombreRuta { get; set; }
+        public string Origen { get; set; }
         public int TipoId { get; set; }
         public double? OrigenLat { get; set; }
         public double? OrigenLong { get; set; }
@@ -19,5 +20,6 @@ namespace TransporteDigitalRD.Application.DTOs
         public decimal? Costo { get; set; }
         public string UbicActual { get; set; }
         public string Destino { get; set; }
+        public string Estado { get; set; } // Nuevo campo para el estado del viaje
     }
 }

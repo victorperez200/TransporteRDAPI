@@ -9,6 +9,6 @@ namespace TransporteDigitalRD.Application.DTOs
 {
   public class PostulacionesResponse
   {
-    public List<Boleto> Postulaciones;
+    //public List<Boleto> Postulaciones;
   }
 }

@@ -8,6 +8,7 @@ namespace TransporteDigitalRD.Application.DTOs
 {
     public class UpdateViajeDto
     {
+        public string Nombre_ruta { get; set; } 
         public int UsuarioId { get; set; }
         public int TipoId { get; set; }
         public double OrigenLat { get; set; }
@@ -19,5 +20,6 @@ namespace TransporteDigitalRD.Application.DTOs
         public decimal Costo { get; set; }
         public string UbicActual { get; set; } = string.Empty;
         public string Destino { get; set; } = string.Empty;
+        public string Estado { get; set; }// Estado por defecto al actualizar un viaje
     }
 }

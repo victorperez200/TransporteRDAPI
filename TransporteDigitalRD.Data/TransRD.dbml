@@ -1,35 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TransRD" Class="TransRDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.Boleto" Member="Boletos">
-    <Type Name="Boleto">
-      <Column Name="boleto_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="usuario_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="viaje_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="fecha_compra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="monto" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
-      <Column Name="estado" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Viaje_Boleto" Member="Viaje" ThisKey="viaje_id" OtherKey="viaje_id" Type="Viaje" IsForeignKey="true" />
-      <Association Name="Usuario_Boleto" Member="Usuario" ThisKey="usuario_id" OtherKey="usuario_id" Type="Usuario" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Viaje" Member="Viajes">
-    <Type Name="Viaje">
-      <Column Name="viaje_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="usuario_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="tipo_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="origen_lat" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="origen_lng" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="destino_lat" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="destino_lng" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="fecha_inicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="fecha_fin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="costo" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="Ubicacion_actual" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="Destino" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Association Name="Viaje_Boleto" Member="Boletos" ThisKey="viaje_id" OtherKey="viaje_id" Type="Boleto" />
-      <Association Name="TipoTransporte_Viaje" Member="TipoTransporte" ThisKey="tipo_id" OtherKey="tipo_id" Type="TipoTransporte" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Usuario_Viaje" Member="Usuario" ThisKey="usuario_id" OtherKey="usuario_id" Type="Usuario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CodigoQR" Member="CodigoQRs">
     <Type Name="CodigoQR">
       <Column Name="qr_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -77,9 +46,9 @@
       <Column Name="tipo_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="tarifa_base" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
-      <Association Name="TipoTransporte_Viaje" Member="Viajes" ThisKey="tipo_id" OtherKey="tipo_id" Type="Viaje" />
       <Association Name="TipoTransporte_ConfiguracionTarifa" Member="ConfiguracionTarifas" ThisKey="tipo_id" OtherKey="tipo_id" Type="ConfiguracionTarifa" />
       <Association Name="TipoTransporte_ReportarProblema" Member="ReportarProblema" ThisKey="tipo_id" OtherKey="TipoTransporteId" Type="ReportarProblema" />
+      <Association Name="TipoTransporte_Viaje" Member="Viaje" ThisKey="tipo_id" OtherKey="tipo_id" Type="Viaje" />
     </Type>
   </Table>
   <Table Name="dbo.Usuario" Member="Usuarios">
@@ -93,8 +62,6 @@
       <Column Name="estado" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="foto" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="roles" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Association Name="Usuario_Boleto" Member="Boletos" ThisKey="usuario_id" OtherKey="usuario_id" Type="Boleto" />
-      <Association Name="Usuario_Viaje" Member="Viajes" ThisKey="usuario_id" OtherKey="usuario_id" Type="Viaje" />
       <Association Name="Usuario_CuentaSaldo" Member="CuentaSaldos" ThisKey="usuario_id" OtherKey="usuario_id" Type="CuentaSaldo" />
     </Type>
   </Table>
@@ -115,6 +82,45 @@
       <Column Name="Desc_Problema" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
       <Association Name="TipoProblema_ReportarProblema" Member="TipoProblema" ThisKey="TipoProblemaId" OtherKey="Id" Type="TipoProblema" IsForeignKey="true" />
       <Association Name="TipoTransporte_ReportarProblema" Member="TipoTransporte" ThisKey="TipoTransporteId" OtherKey="tipo_id" Type="TipoTransporte" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Viaje" Member="Viaje">
+    <Type Name="Viaje">
+      <Column Name="viaje_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tipo_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="origen_lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="origen_lng" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="destino_lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="destino_lng" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fecha_inicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fecha_fin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="costo" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Ubicacion_actual" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Destino" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="origen" Type="System.String" DbType="NChar(150)" CanBeNull="true" />
+      <Column Name="nombre_ruta" Type="System.String" DbType="NChar(150)" CanBeNull="true" />
+      <Association Name="TipoTransporte_Viaje" Member="TipoTransporte" ThisKey="tipo_id" OtherKey="tipo_id" Type="TipoTransporte" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Viaje_Usuario" Member="Viaje_Usuario">
+    <Type Name="Viaje_Usuario">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="viaje_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tipo_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="origen_lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="origen_lng" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="destino_lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="destino_lng" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fecha_inicio" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_fin" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="costo" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Ubicacion_actual" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Destino" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="origen" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="nombre_ruta" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
