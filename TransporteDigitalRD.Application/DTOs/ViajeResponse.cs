@@ -8,7 +8,7 @@ namespace TransporteDigitalRD.Application.DTOs
 {
     public class ViajeResponse
     {
-        public string nombre_ruta { get; set; }
+        public string nombre_actual { get; set; }
         public int ViajeId { get; set; }
         public int TipoId { get; set; }
         public double? OrigenLat {  get; set; }

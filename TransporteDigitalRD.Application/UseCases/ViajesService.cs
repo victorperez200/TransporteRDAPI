@@ -27,7 +27,7 @@ namespace TransporteDigitalRD.Application.UseCases
             {
                 var response = new ViajeResponse
                 {
-                    nombre_ruta = item.nombre_ruta, // Asignar el nombre de la ruta
+                    nombre_actual = item.nombre_ruta, // Asignar el nombre de la ruta
                     ViajeId = item.viaje_id,
                     TipoId = item.tipo_id,
                     OrigenLat = item.origen_lat,
@@ -62,7 +62,7 @@ namespace TransporteDigitalRD.Application.UseCases
             {
                 var response = new ViajeResponse
                 {
-                    nombre_ruta = item.nombre_ruta, // Asignar el nombre de la ruta
+                    nombre_actual = item.nombre_ruta, // Asignar el nombre de la ruta
                     Origen = item.origen,
                     ViajeId = item.viaje_id,
                     TipoId = item.tipo_id,
